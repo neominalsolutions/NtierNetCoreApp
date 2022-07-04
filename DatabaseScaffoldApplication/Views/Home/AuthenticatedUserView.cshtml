@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "AuthenticatedUserView";
+}
+
+<h1>AuthenticatedUserView</h1>
+
+
+
+
+<div asp-authorize asp-roles="Admin" class="panel panel-default">
+    <div class="panel-heading">Admin Section</div>
+    <div class="panel-body">
+        Only admin
+    </div>
+</div>
+
+
+
+<div asp-authorize asp-roles="Manager" class="panel panel-default">
+    <div class="panel-heading">Manager Section</div>
+    <div class="panel-body">
+        Only Manager
+    </div>
+</div>
+
+
+
+@*
+
+
+    https://www.davepaquette.com/archive/2017/11/05/authorize-tag-helper.aspx
+    Install-Package TagHelperSamples.Authorization -Version 3.0.56
+
+*@
+
+
+
+
+
+
+
+

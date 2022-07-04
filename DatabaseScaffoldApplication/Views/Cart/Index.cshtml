@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model CartViewModel
+
+<h1>Cart Information</h1>
+<ul id="cart">
+    @foreach (var item in Model.Cart.CartItems)
+    {
+        <li>Product : @item.Name - Price: @item.Price - Quantity : @item.Quantity</li>
+
+    }
+</ul>
+
+
+<button onclick="AddToCart('1')">AddToCart</button>
+
+
+<span id="totalPrice">
+    Total Price: @Model.Cart.TotalPrice
+</span>
+
+
+@section Scripts {
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script>
+
+
+        function AddToCart(cartItemId) {
+
+            var jsonData = {
+                id: cartItemId,
+                quantity: 1,
+                price: 100,
+                name:'Test product'
+            };
+
+            console.log("jsonData", jsonData);
+
+            $.ajax({
+                type: 'post',
+                url: '/Cart/AddToCart',
+                data: jsonData,
+                success: function (response) {
+
+                    console.log("response", response);
+                    $("#cart").empty();
+
+                    $.each(response["cartItems"], function (index, key) {
+
+                        console.log("key", key);
+
+                        $("#cart").append("<li> Product : " + key["name"] + " - Price: " + key["price"] + "- Quantity: " + key["quantity"] + " -" + "</li>");
+
+                    });
+
+
+                    $('#totalPrice').text("Total Price:" + response["total"]);
+
+                    alert(response["message"]);
+
+
+                },
+                error: function (err) {
+                    console.log("err", err);
+                }
+            })
+
+        }
+
+    </script>
+
+}
+
+
+
+
+
+
+
+

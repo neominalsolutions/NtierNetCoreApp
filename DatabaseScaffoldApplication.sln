@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseScaffoldApplication", "DatabaseScaffoldApplication\DatabaseScaffoldApplication.csproj", "{5A5E4241-EB9A-4ABA-9FB0-42DE2BB79800}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A5E4241-EB9A-4ABA-9FB0-42DE2BB79800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5E4241-EB9A-4ABA-9FB0-42DE2BB79800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5E4241-EB9A-4ABA-9FB0-42DE2BB79800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5E4241-EB9A-4ABA-9FB0-42DE2BB79800}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17054DEE-A34E-49AF-956F-5BBAAFF7184D}
+	EndGlobalSection
+EndGlobal

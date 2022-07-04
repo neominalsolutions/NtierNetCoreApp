@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+@{
+    Layout = null;
+}
+@model CartViewModel
+
+
+<h1>Sepetteki Ürünler</h1>
+<ul id="sepet">
+    @foreach (var item in Model.Cart.CartItems)
+    {
+        <li>@item.Name - @item.Price - @item.Quantity</li>
+        <li>
+            <input placeholder="Satın alınacak Urun Adeti" type="text" id="quantity_@item.Id" />
+        </li>
+
+        <li><button onclick="AddToCart('@item.Id','@item.Name','@item.Price')">Sepete Ekle</button></li>
+    }
+</ul>
+
+<span id="totalPrice">
+    Total: @Model.Cart.TotalPrice
+</span>
+
+
+
+
+@section Scripts {
+
+
+    <script>
+
+
+        function AddToCart(cartItemId, name, price) {
+
+            var quantity = $("#quantity_" + cartItemId).val();
+            var id = cartItemId;
+            var name = name;
+            var price = price;
+
+            var jsonData = {
+                id: id,
+                name: name,
+                price: price,
+                quantity: quantity
+            };
+
+
+            console.log("jsonData", jsonData);
+
+            $.ajax({
+                type: 'post',
+                url: '/Cart/AddToCart',
+                data: jsonData,
+                success: function (response) {
+
+                    console.log("response", response);
+                    $("#sepet").empty();
+
+                    $.each(response["cartItems"], function (index, key) {
+
+                        console.log("key", key);
+
+                        $("#sepet").append("<li>" + key["name"] + " - " + key["price"] + "-" + key["quantity"] + " -" + "</li>");
+                        $("#sepet").append('<li><input placeholder="Satın alınacak Urun Adeti" type="text" id="quantity_' + key["id"] + '" /></li>');
+                        $("#sepet").append('<li><button onclick="AddToCart("' + key.id + '",' + '"' + key.name + '",' + '"' + key.quantity + '"' + ')> Sepete Ekle</button ></li > ')
+
+                    });
+
+
+                    $('#totalPrice').text("Total:" + response["total"]);
+
+                    alert(response["message"]);
+
+
+                },
+                error: function (err) {
+                    console.log("err", err);
+                }
+            })
+
+        }
+
+    </script>
+
+
+}
+
+

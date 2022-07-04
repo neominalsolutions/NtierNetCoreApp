@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@model UserInputModel
+
+
+
+<div class="container">
+    <form method="post" class="row">
+        <input class="form-control" asp-for="Email" placeholder="Email" />
+        <br />
+        <input type="password" class="form-control" asp-for="Password" placeholder="Password" />
+        <br />
+        <input class="btn btn-primary" type="submit" value="Register" />
+    </form>
+</div>
+
+
+
+

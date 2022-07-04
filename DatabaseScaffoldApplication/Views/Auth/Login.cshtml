@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@model UserInputModel
+
+
+
+<form method="post">
+    <input asp-for="Email" />
+    <input asp-for="Password" />
+    <input type="checkbox" asp-for="RememberMe" />
+
+    <input type="submit" value="Login" />
+</form>
+
+
+<h1>Login</h1>
+

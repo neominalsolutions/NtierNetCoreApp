@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@using Microsoft.AspNetCore.Authorization
+@using DatabaseScaffoldApplication.Infrastructure;
+
+@model List<DatabaseScaffoldApplication.Domain.Models.UserResource>
+@inject IAuthorizationService AuthorizationService
+
+
+    <div class="row">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item">
+                        @item.Title
+
+                        @{
+
+                            var result = await AuthorizationService.AuthorizeAsync(User, item, Operations.Edit);
+
+                            if (result.Succeeded)
+                            {
+                                <a class="btn btn-info" asp-controller="Resource" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                            }
+
+                            <a class="btn btn-warning" asp-controller="Resource" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                        }
+
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+
